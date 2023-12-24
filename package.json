@@ -1,0 +1,8 @@
+{
+  "name": "api.development-space.ru",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "nux7jr <nux7jr@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
