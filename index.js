@@ -9,8 +9,22 @@ import publicRoutes from './routes/public.js'
 import 'dotenv/config';
 import cors from 'cors';
 
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const app = express();
-app.use(cors());
+
+app.use(cors({
+    origin: process.env.BASE_URL,
+    credentials: true,
+}));
+
+app.use('/uploads', express.static(join(__dirname, 'uploads')));
+
+
 const PORT = process.env.PORT || 1337;
 
 app.use(bodyParser.json());
@@ -23,7 +37,6 @@ app.use('/auth', authRoutes);
 app.use('/api', articlesRoutes);
 app.use('/user', userRoutes);
 app.use('/public', publicRoutes);
-
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

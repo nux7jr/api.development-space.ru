@@ -18,7 +18,7 @@ export default (sequelize) => {
             unique: false,
         },
         image: {
-            type: DataTypes.BLOB('long'),
+            type: DataTypes.STRING,
             allowNull: true,
             unique: false,
         },
