@@ -2,10 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { sequelize } from './models/index.js';
 
-import authRoutes from './routes/auth.js';
 import articlesRoutes from './routes/articles.js';
 import userRoutes from './routes/user.js';
-import publicRoutes from './routes/public.js'
 import 'dotenv/config';
 import cors from 'cors';
 
@@ -25,7 +23,7 @@ app.use(cors({
 app.use('/uploads', express.static(join(__dirname, 'uploads')));
 
 
-const PORT = process.env.PORT || 1337;
+const PORT = process.env.PORT || 7000;
 
 app.use(bodyParser.json());
 
@@ -33,10 +31,9 @@ sequelize.sync().then(() => {
     console.log('Database synced');
 });
 
-app.use('/auth', authRoutes);
-app.use('/api', articlesRoutes);
+
 app.use('/user', userRoutes);
-app.use('/public', publicRoutes);
+app.use('/article', articlesRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
